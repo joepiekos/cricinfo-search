@@ -35,7 +35,7 @@ def send_email(news_articles):
     recipient_email = 'joe.piekos@gmail.com'
 
     # Create the email content
-    subject = 'Daily Cricket Newsa'
+    subject = 'Daily Cricket News'
     body = '\n'.join([f"{article['title']} - https://www.espncricinfo.com{article['link']}" for article in news_articles])
     
     msg = MIMEText(body)
@@ -82,6 +82,33 @@ def find_match():
     team2 = request.form['team2']
     match_url = find_match_url(date, team1, team2)
     return render_template('result.html', match_url=match_url)
+
+@app.route('/find_database_info', methods=['POST'])
+def find_datetime():
+    id_number = request.form['id_number']
+
+    # Construct the URL using the user-supplied ID number
+    url = f"http://cricket.prod.qws.smartodds.co.uk/admin/core/game/{id_number}/change/"
+
+    # Extract the value from the id_start_datetime_0 element
+    start_datetime, before_vs, after_vs = get_database_info(url)
+
+    return render_template('result.html', id_number=id_number, team1=before_vs, team2=after_vs, start_datetime=start_datetime)
+
+def get_database_info(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.content, 'html.parser')
+        start_datetime = soup.find(name='start_datetime_0').get('value')
+        teams = soup.find(name='name').get('value')
+        parts = input_string.split("vs", 1)
+
+        before_vs = parts[0].strip()  # Strip to remove any leading/trailing whitespaces
+        after_vs = parts[1].strip()  # Strip to remove any leading/trailing whitespaces
+
+        return start_datetime, before_vs, after_vs
+    return None
+
 def get_daily_news_daily():
     news_articles = scrape_cricinfo_news()
     send_email(news_articles)

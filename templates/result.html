@@ -11,5 +11,13 @@
     {% else %}
         <p>No matching match found.</p>
     {% endif %}
+    <h1>Database info:</h1>
+    {% if team1 %}
+    <p>team1: {{ team1 }}</p>
+    <p>team2: {{ team2 }}</p>
+    <p>date: {{ start_datetime }}</p>
+    {% else %}
+    <p>No matching match found.</p>
+    {% endif %}
 </body>
 </html>
