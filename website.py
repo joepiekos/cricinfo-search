@@ -35,7 +35,7 @@ def send_email(news_articles):
     recipient_email = 'joe.piekos@gmail.com'
 
     # Create the email content
-    subject = 'Daily Cricket News'
+    subject = 'Daily Cricket Newsa'
     body = '\n'.join([f"{article['title']} - https://www.espncricinfo.com{article['link']}" for article in news_articles])
     
     msg = MIMEText(body)
