@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Match Result</title>
+</head>
+<body>
+    <h1>Match URL:</h1>
+    {% if match_url %}
+        <p><a href="{{ match_url }}" target="_blank">{{ match_url }}</a></p>
+    {% else %}
+        <p>No matching match found.</p>
+    {% endif %}
+</body>
+</html>

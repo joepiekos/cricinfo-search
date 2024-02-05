@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Cricket News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!--<h1>Daily Cricket News</h1>-->
+    <!--<p>Click the button below to receive the latest cricket news in your email:</p>-->
+    <!--<form action="/get_daily_news" method="post">
+        <button type="submit">Get Daily News</button>
+    </form>
+    {% if message %}
+        <p> response status code: {{ status }}</p>
+    {% endif %}
+    <b>daily bethan message</b>: {{ bethanMessage }}
+    <p><img src="{{ url_for('static', filename='junimo.jpeg') }}" /></p>-->
+    <h2>Find Cricket Match</h2>
+    <form action="/find_match" method="post">
+        <label for="date">Date (YYYY-MM-DD):</label>
+        <input type="text" id="date" name="date" required><br><br>
+        <label for="team1">Team 1:</label>
+        <input type="text" id="team1" name="team1" required><br><br>
+        <label for="team2">Team 2:</label>
+        <input type="text" id="team2" name="team2" required><br><br>
+        <button type="submit">Find Match</button>
+    </form>
+</body>
+</html>
